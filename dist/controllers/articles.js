@@ -223,6 +223,60 @@ function () {
         }
       });
     }
+  }, {
+    key: "deleteSingleArticle",
+    value: function deleteSingleArticle(req, res) {
+      var articleId, owner;
+      return regeneratorRuntime.async(function deleteSingleArticle$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              articleId = req.params.articleId;
+              _context5.next = 3;
+              return regeneratorRuntime.awrap(_index["default"].query("SELECT * FROM articles WHERE articleId = ".concat(articleId)));
+
+            case 3:
+              owner = _context5.sent;
+
+              if (!(owner.rowCount === 0)) {
+                _context5.next = 6;
+                break;
+              }
+
+              return _context5.abrupt("return", res.status(404).json({
+                message: 'Article Not Found'
+              }));
+
+            case 6:
+              if (!(owner.rows[0].createdby !== req.user.email)) {
+                _context5.next = 8;
+                break;
+              }
+
+              return _context5.abrupt("return", res.status(403).json({
+                status: 'error',
+                message: 'You cannot delete this article'
+              }));
+
+            case 8:
+              _context5.next = 10;
+              return regeneratorRuntime.awrap(_index["default"].query("DELETE FROM articles WHERE articleId = ".concat(articleId)));
+
+            case 10:
+              return _context5.abrupt("return", res.status(202).json({
+                status: 'success',
+                data: {
+                  message: 'Article succesfully deleted'
+                }
+              }));
+
+            case 11:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      });
+    }
   }]);
   return ArticleController;
 }();
