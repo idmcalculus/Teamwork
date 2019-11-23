@@ -115,6 +115,44 @@ function () {
         }
       });
     }
+  }, {
+    key: "getSingleArticle",
+    value: function getSingleArticle(req, res) {
+      var articleId, article;
+      return regeneratorRuntime.async(function getSingleArticle$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              articleId = req.params.articleId;
+              _context3.next = 3;
+              return regeneratorRuntime.awrap(_index["default"].query("SELECT * FROM articles WHERE articleId = ".concat(articleId)));
+
+            case 3:
+              article = _context3.sent;
+
+              if (!(article.rows.length === 0)) {
+                _context3.next = 6;
+                break;
+              }
+
+              return _context3.abrupt("return", res.status(404).json({
+                status: 'error',
+                error: 'Article with the specified articleId NOT found'
+              }));
+
+            case 6:
+              return _context3.abrupt("return", res.status(200).json({
+                status: 'success',
+                data: article.rows[0]
+              }));
+
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      });
+    }
   }]);
   return ArticleController;
 }();
