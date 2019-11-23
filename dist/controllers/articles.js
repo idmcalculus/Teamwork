@@ -90,6 +90,31 @@ function () {
         }
       });
     }
+  }, {
+    key: "getAllArticles",
+    value: function getAllArticles(req, res) {
+      var articles;
+      return regeneratorRuntime.async(function getAllArticles$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(_index["default"].query('SELECT * FROM articles ORDER BY createdOn DESC'));
+
+            case 2:
+              articles = _context2.sent;
+              return _context2.abrupt("return", res.status(200).json({
+                status: 'Success',
+                data: articles.rows
+              }));
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
+    }
   }]);
   return ArticleController;
 }();
