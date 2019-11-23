@@ -14,4 +14,14 @@ var validateArticlePost = function validateArticlePost(article) {
   return schema.validate(article);
 };
 
+var validateArticleEdit = function validateArticleEdit(article) {
+  var schema = _joi["default"].object().keys({
+    title: _joi["default"].string().max(50).required(),
+    article: _joi["default"].string().max(2500).required()
+  });
+
+  return schema.validate(article);
+};
+
 module.exports.validatePost = validateArticlePost;
+module.exports.validateEdit = validateArticleEdit;

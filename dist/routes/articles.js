@@ -13,4 +13,5 @@ var router = _express["default"].Router();
 router.post('/articles', _auth["default"], _articles["default"].createSingleArticle);
 router.get('/articles', _auth["default"], _articles["default"].getAllArticles);
 router.get('/articles/:articleId', _auth["default"], _articles["default"].getSingleArticle);
+router.patch('/articles/:articleId', _auth["default"], _articles["default"].updateSingleArticle);
 module.exports = router;

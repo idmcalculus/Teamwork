@@ -153,6 +153,76 @@ function () {
         }
       });
     }
+  }, {
+    key: "updateSingleArticle",
+    value: function updateSingleArticle(req, res) {
+      var _validateEdit, error, articleId, owner, _req$body2, title, article;
+
+      return regeneratorRuntime.async(function updateSingleArticle$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _validateEdit = (0, _articles.validateEdit)(req.body), error = _validateEdit.error;
+
+              if (!error) {
+                _context4.next = 3;
+                break;
+              }
+
+              return _context4.abrupt("return", res.status(400).json({
+                message: error.details[0].message
+              }));
+
+            case 3:
+              articleId = req.params.articleId;
+              _context4.next = 6;
+              return regeneratorRuntime.awrap(_index["default"].query("SELECT * FROM articles WHERE articleId = ".concat(articleId)));
+
+            case 6:
+              owner = _context4.sent;
+
+              if (!(owner.rowCount === 0)) {
+                _context4.next = 9;
+                break;
+              }
+
+              return _context4.abrupt("return", res.status(404).json({
+                message: 'Article Not Found'
+              }));
+
+            case 9:
+              if (!(owner.rows[0].createdby !== req.user.email)) {
+                _context4.next = 11;
+                break;
+              }
+
+              return _context4.abrupt("return", res.status(403).json({
+                status: 'error',
+                message: 'You cannot edit this article'
+              }));
+
+            case 11:
+              _req$body2 = req.body, title = _req$body2.title, article = _req$body2.article;
+              _context4.next = 14;
+              return regeneratorRuntime.awrap(_index["default"].query("UPDATE articles\n            SET title = $1, article = $2\n            WHERE articleId = ".concat(articleId), [title, article]));
+
+            case 14:
+              return _context4.abrupt("return", res.status(201).json({
+                status: 'success',
+                data: {
+                  message: 'Article successfully updated',
+                  title: title,
+                  article: article
+                }
+              }));
+
+            case 15:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      });
+    }
   }]);
   return ArticleController;
 }();

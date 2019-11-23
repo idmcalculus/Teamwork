@@ -1,0 +1,17 @@
+import Joi from '@hapi/joi';
+
+const validateArticlePost = (article) => {
+	const schema = Joi.object().keys({
+	title: Joi.string()
+	.max(50)
+	.required(),
+	article: Joi.string()
+	.max(2500)
+	.required(),
+	categoryId: Joi.number()
+	.required(),
+	});
+	return schema.validate(article);
+  };
+
+module.exports.validatePost = validateArticlePost;
