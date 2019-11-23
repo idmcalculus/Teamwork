@@ -14,4 +14,5 @@ router.post('/articles', _auth["default"], _articles["default"].createSingleArti
 router.get('/articles', _auth["default"], _articles["default"].getAllArticles);
 router.get('/articles/:articleId', _auth["default"], _articles["default"].getSingleArticle);
 router.patch('/articles/:articleId', _auth["default"], _articles["default"].updateSingleArticle);
+router["delete"]('/articles/:articleId', _auth["default"], _articles["default"].deleteSingleArticle);
 module.exports = router;
