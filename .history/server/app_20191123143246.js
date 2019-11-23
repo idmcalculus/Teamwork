@@ -1,4 +1,3 @@
-import "@babel/polyfill";
 import express from 'express';
 import bodyParser from 'body-parser';
 import users from './routes/user';
@@ -14,6 +13,6 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use('/api/v1', users);
+app.use('/api/v1/auth/create-user', users);
 
 module.exports = app;

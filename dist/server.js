@@ -2,6 +2,8 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+require("@babel/polyfill");
+
 var _http = _interopRequireDefault(require("http"));
 
 var _app = _interopRequireDefault(require("./app"));
