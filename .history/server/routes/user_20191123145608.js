@@ -1,4 +1,4 @@
-import 'express-async-errors';
+require("express-async-errors");
 import express from 'express';
 import UserController from '../controllers/user';
 import auth from '../middlewares/auth';

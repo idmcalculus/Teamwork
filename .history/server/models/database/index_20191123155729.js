@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 import pg from 'pg';
 
 dotenv.config();
+//const { Pool, Client } = require("pg");
+
 
 let conString = process.env.DB_URL;
 let client = new pg.Client(conString);

@@ -12,11 +12,11 @@ var _bcrypt = _interopRequireDefault(require("bcrypt"));
 
 var _identity = _interopRequireDefault(require("../models/database/identity"));
 
-var _index = _interopRequireDefault(require("../models/db/index"));
+var _index = _interopRequireDefault(require("../models/database/index"));
 
-var _userSignup = require("../models/validates/userSignup.validate");
+var _userSignup = require("../models/validators/userSignup");
 
-require('../models/db/user')();
+require('../models/database/user')();
 
 var UserController =
 /*#__PURE__*/
@@ -89,7 +89,7 @@ function () {
                 email: email
               }, 'jwtPrivateKey');
               return _context.abrupt("return", res.status(201).json({
-                status: 'sucess',
+                status: 'success',
                 data: {
                   message: 'User account successfully created',
                   token: token,

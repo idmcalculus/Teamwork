@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import randomId from '../models/database/identity';
 require('../models/database/user')();
 import db from '../models/database/index';
-import { validateSignup } from '../models/validators/userSignup';
+import { validateSignup } from '../models/validates/userSignup.validate';
 
 class UserController {
   static async createUserAccount(req, res) {
