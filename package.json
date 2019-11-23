@@ -20,9 +20,17 @@
   },
   "homepage": "https://github.com/idmcalculus/Teamwork#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.17.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-fileupload": "^1.1.6",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.14.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
