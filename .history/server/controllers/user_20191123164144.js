@@ -55,36 +55,6 @@ class UserController {
       },
     });
   }
-
-  static async loginUser(req, res) {
-    const { error } = validateLogin(req.body);
-    if (error) {
-      return res.status(400).json({
-        status: 'error',
-        error: error.details[0].message,
-      });
-    }
-
-    const { email, password } = req.body;
-    const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (user.rows.length === 0) return res.status(400).send('Invalid email or password');
-
-    const validPassword = await bcrypt.compare(password, user.rows[0].password);
-    if (!validPassword) return res.status(400).send('Invalid email or password');
-
-    const token = jwt.sign({
-      userId: user.rows[0].userId,
-      isAdmin: user.rows[0].isAdmin,
-      email: user.rows[0].email,
-    }, 'jwtPrivateKey');
-    return res.status(201).json({
-      status: 'success',
-      data: {
-        token,
-        userId: user.rows[0].userId,
-      },
-    });
-  }
 }
 
 module.exports = UserController;
