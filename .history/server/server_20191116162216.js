@@ -45,7 +45,7 @@ server.on('listening', () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("My Teamwork API is Live");
+  res.send("Hello this is my Teamwork App");
 });
 
 server.listen(port);

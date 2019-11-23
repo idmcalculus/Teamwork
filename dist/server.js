@@ -56,4 +56,9 @@ server.on('listening', function () {
   var bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
   console.log('Live on ' + bind);
 });
+
+_app["default"].get("/", function (req, res) {
+  res.send("My Teamwork API is Live");
+});
+
 server.listen(port);
