@@ -16,6 +16,8 @@ var _index = _interopRequireDefault(require("../models/database/index"));
 
 var _userSignup = require("../models/validators/userSignup");
 
+var _userLogin = require("../models/validators/userLogin");
+
 require('../models/database/user')();
 
 var UserController =
@@ -100,6 +102,77 @@ function () {
             case 21:
             case "end":
               return _context.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "loginUser",
+    value: function loginUser(req, res) {
+      var _validateLogin, error, _req$body2, email, password, user, validPassword, token;
+
+      return regeneratorRuntime.async(function loginUser$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _validateLogin = (0, _userLogin.validateLogin)(req.body), error = _validateLogin.error;
+
+              if (!error) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", res.status(400).json({
+                status: 'error',
+                error: error.details[0].message
+              }));
+
+            case 3:
+              _req$body2 = req.body, email = _req$body2.email, password = _req$body2.password;
+              _context2.next = 6;
+              return regeneratorRuntime.awrap(_index["default"].query('SELECT * FROM users WHERE email = $1', [email]));
+
+            case 6:
+              user = _context2.sent;
+
+              if (!(user.rows.length === 0)) {
+                _context2.next = 9;
+                break;
+              }
+
+              return _context2.abrupt("return", res.status(400).send('Invalid email or password'));
+
+            case 9:
+              _context2.next = 11;
+              return regeneratorRuntime.awrap(_bcrypt["default"].compare(password, user.rows[0].password));
+
+            case 11:
+              validPassword = _context2.sent;
+
+              if (validPassword) {
+                _context2.next = 14;
+                break;
+              }
+
+              return _context2.abrupt("return", res.status(400).send('Invalid email or password'));
+
+            case 14:
+              token = _jsonwebtoken["default"].sign({
+                userId: user.rows[0].userId,
+                isAdmin: user.rows[0].isAdmin,
+                email: user.rows[0].email
+              }, 'jwtPrivateKey');
+              return _context2.abrupt("return", res.status(201).json({
+                status: 'success',
+                data: {
+                  token: token,
+                  userId: user.rows[0].userId
+                }
+              }));
+
+            case 16:
+            case "end":
+              return _context2.stop();
           }
         }
       });

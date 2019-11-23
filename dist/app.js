@@ -10,6 +10,8 @@ var _bodyParser = _interopRequireDefault(require("body-parser"));
 
 var _user = _interopRequireDefault(require("./routes/user"));
 
+var _articles = _interopRequireDefault(require("./routes/articles"));
+
 var app = (0, _express["default"])();
 app.use(_bodyParser["default"].json());
 app.use(function (req, res, next) {
@@ -19,4 +21,5 @@ app.use(function (req, res, next) {
   next();
 });
 app.use('/api/v1', _user["default"]);
+app.use("/api/v1", _articles["default"]);
 module.exports = app;
