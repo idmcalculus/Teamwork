@@ -3,7 +3,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import users from './routes/user';
 import articles from './routes/articles';
-import categories from './routes/articleCategory';
 
 const app = express();
 

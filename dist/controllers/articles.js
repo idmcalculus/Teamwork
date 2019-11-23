@@ -277,6 +277,44 @@ function () {
         }
       });
     }
+  }, {
+    key: "getArticlesInCategory",
+    value: function getArticlesInCategory(req, res) {
+      var categoryId, article;
+      return regeneratorRuntime.async(function getArticlesInCategory$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              categoryId = req.params.categoryId;
+              _context6.next = 3;
+              return regeneratorRuntime.awrap(_index["default"].query("SELECT * FROM articles WHERE categoryId = ".concat(categoryId)));
+
+            case 3:
+              article = _context6.sent;
+
+              if (!(article.rows.length === 0)) {
+                _context6.next = 6;
+                break;
+              }
+
+              return _context6.abrupt("return", res.status(404).json({
+                status: 'error',
+                error: 'No articles in the specified Category'
+              }));
+
+            case 6:
+              return _context6.abrupt("return", res.status(200).json({
+                status: 'success',
+                data: article.rows
+              }));
+
+            case 7:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      });
+    }
   }]);
   return ArticleController;
 }();
