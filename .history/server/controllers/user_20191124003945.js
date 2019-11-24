@@ -12,6 +12,7 @@ class UserController {
     const {
       firstName, lastName, email, password, gender, jobRole, department, address, isAdmin,
     } = req.body;
+    console.log(req.body)
 
     const { error } = validateSignup(req.body);
     if (error) {

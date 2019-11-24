@@ -14,6 +14,6 @@ var _admin = _interopRequireDefault(require("../middlewares/admin"));
 
 var router = _express["default"].Router();
 
-router.post('/auth/create-user', _admin["default"], _user["default"].createUserAccount);
-router.post('/auth/login', _auth["default"], _user["default"].loginUser);
+router.post('/auth/create-user', _user["default"].createUserAccount);
+router.post('/auth/login', _user["default"].loginUser);
 module.exports = router;
