@@ -82,7 +82,7 @@ class GifsController {
         if (gif.rows[0].createdby !== req.user.email) {
           return res.status(403).json({
             status: 'error',
-            message: 'You cannot delete this gif',
+            message: 'You cannot delete this Gif',
           });
         }
     
@@ -90,7 +90,7 @@ class GifsController {
     
     
         await db.query(`DELETE FROM gifs WHERE gifId = ${gifId}`);
-        if (gif.rowCount === 0) return res.status(404).json({ message: 'gif Not Found' });
+        if (gif.rowCount === 0) return res.status(404).json({ message: 'Gif Not Found' });
         return res.status(202).json({
           status: 'success',
           data: {
