@@ -14,6 +14,8 @@ var _articles = _interopRequireDefault(require("./routes/articles"));
 
 var _articleCategory = _interopRequireDefault(require("./routes/articleCategory"));
 
+var _gifs = _interopRequireDefault(require("./routes/gifs"));
+
 var app = (0, _express["default"])();
 app.use(_bodyParser["default"].json());
 app.use(function (req, res, next) {
@@ -25,4 +27,5 @@ app.use(function (req, res, next) {
 app.use('/api/v1', _user["default"]);
 app.use('/api/v1', _articles["default"]);
 app.use('/api/v1', _articleCategory["default"]);
+app.use('/api/v1', _gifs["default"]);
 module.exports = app;

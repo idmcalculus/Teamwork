@@ -51,7 +51,7 @@ function () {
               comment = req.body.comment;
               articleId = req.params.articleId;
               createdOn = dateTime;
-              createdBy = req.user.email;
+              createdBy = req.body.email;
               commentId = (0, _identity["default"])(10000);
               _context.next = 10;
               return regeneratorRuntime.awrap(_index["default"].query("SELECT * FROM articles WHERE articleId = ".concat(articleId)));

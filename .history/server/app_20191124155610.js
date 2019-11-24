@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import users from './routes/user';
 import articles from './routes/articles';
 import categories from './routes/articleCategory';
-import gifs from "./routes/gifs";
+import { gifs } from "./routes/gifs";
 
 const app = express();
 

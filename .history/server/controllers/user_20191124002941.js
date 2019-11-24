@@ -8,11 +8,6 @@ import { validateLogin } from '../models/validators/userLogin';
 
 class UserController {
   static async createUserAccount(req, res) {
-
-    const {
-      firstName, lastName, email, password, gender, jobRole, department, address, isAdmin,
-    } = req.body;
-
     const { error } = validateSignup(req.body);
     if (error) {
       return res.status(400).json({
@@ -20,6 +15,11 @@ class UserController {
         error: error.details[0].message,
       });
     }
+
+    const {
+      firstName, lastName, email, password, gender, jobRole, department, address, isAdmin,
+    } = req.body;
+    console.log(req.body)
 
     const identity = randomId(1000000);
 

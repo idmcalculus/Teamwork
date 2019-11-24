@@ -30,16 +30,17 @@ function () {
   (0, _createClass2["default"])(UserController, null, [{
     key: "createUserAccount",
     value: function createUserAccount(req, res) {
-      var _validateSignup, error, _req$body, firstName, lastName, email, password, gender, jobRole, department, address, isAdmin, identity, salt, hashedPassword, user, token;
+      var _req$body, firstName, lastName, email, password, gender, jobRole, department, address, isAdmin, _validateSignup, error, identity, salt, hashedPassword, user, token;
 
       return regeneratorRuntime.async(function createUserAccount$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _req$body = req.body, firstName = _req$body.firstName, lastName = _req$body.lastName, email = _req$body.email, password = _req$body.password, gender = _req$body.gender, jobRole = _req$body.jobRole, department = _req$body.department, address = _req$body.address, isAdmin = _req$body.isAdmin;
               _validateSignup = (0, _userSignup.validateSignup)(req.body), error = _validateSignup.error;
 
               if (!error) {
-                _context.next = 3;
+                _context.next = 4;
                 break;
               }
 
@@ -48,8 +49,7 @@ function () {
                 error: error.details[0].message
               }));
 
-            case 3:
-              _req$body = req.body, firstName = _req$body.firstName, lastName = _req$body.lastName, email = _req$body.email, password = _req$body.password, gender = _req$body.gender, jobRole = _req$body.jobRole, department = _req$body.department, address = _req$body.address, isAdmin = _req$body.isAdmin;
+            case 4:
               identity = (0, _identity["default"])(1000000);
               _context.next = 7;
               return regeneratorRuntime.awrap(_bcrypt["default"].genSalt(10));

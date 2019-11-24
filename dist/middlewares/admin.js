@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 
 var _default = function _default(req, res, next) {
-  if (req.user.isAdmin === false) {
-    return res.status(403).send('Not allowed to perform this process');
+  if (req.body.isAdmin === false) {
+    return res.status(403).send('Oops! You are not allowed to perform this process');
   }
 
   next();

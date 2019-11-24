@@ -68,13 +68,13 @@ function () {
               }));
 
             case 11:
-              createdBy = req.user.email;
+              createdBy = req.body.email;
               _context.next = 14;
               return regeneratorRuntime.awrap(_index["default"].query("INSERT INTO articles (articleId, title, article, createdOn, categoryId, createdBy) \n          VALUES ($1, $2, $3, $4, $5, $6)", [articleId, title, article, createdOn, categoryId, createdBy]));
 
             case 14:
               return _context.abrupt("return", res.status(201).json({
-                status: 'sucess',
+                status: 'success',
                 data: {
                   message: 'Article successfully posted',
                   articleId: articleId,
@@ -104,7 +104,7 @@ function () {
             case 2:
               articles = _context2.sent;
               return _context2.abrupt("return", res.status(200).json({
-                status: 'Success',
+                status: 'success',
                 data: articles.rows
               }));
 
@@ -248,7 +248,7 @@ function () {
               }));
 
             case 6:
-              if (!(owner.rows[0].createdby !== req.user.email)) {
+              if (!(owner.rows[0].createdby !== req.body.email)) {
                 _context5.next = 8;
                 break;
               }

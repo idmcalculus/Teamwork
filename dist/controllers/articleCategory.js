@@ -132,7 +132,7 @@ function () {
 
             case 12:
               return _context3.abrupt("return", res.status(201).json({
-                status: 'sucess',
+                status: 'success',
                 categoryId: categoryId,
                 message: 'Category Successfully created'
               }));
@@ -185,7 +185,7 @@ function () {
             case 10:
               return _context4.abrupt("return", res.status(201).json({
                 status: 'success',
-                message: 'Category succesfully updated'
+                message: 'Category successfully updated'
               }));
 
             case 11:
@@ -222,7 +222,7 @@ function () {
             case 6:
               return _context5.abrupt("return", res.status(202).json({
                 status: 'success',
-                message: 'Category succesfully deleted'
+                message: 'Category successfully deleted'
               }));
 
             case 7:
