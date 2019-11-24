@@ -10,6 +10,6 @@ router.use(fileUpload({
 }));
 
 router.post('/gifs', auth, GifsController.postGifs);
-router.get('/gifs', auth, GifsController.getAllGifs);
+router.get('/gifs', auth, GifsController.getAllgifs);
 
 module.exports = router;
