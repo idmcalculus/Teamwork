@@ -1,7 +1,7 @@
 import db from './index';
 
 module.exports = () => {
-  const articlesTable = async () => {
+  const createArticlesTable = async () => {
     try {
       await db.query(`CREATE TABLE IF NOT EXISTS articles (
                     articleId serial PRIMARY KEY, 
@@ -16,5 +16,5 @@ module.exports = () => {
     }
   };
 
-  articlesTable();
+  createArticlesTable();
 };
